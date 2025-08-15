@@ -1,1 +1,308 @@
-<!DOCTYPE html> ...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rahul Dachapally • Portfolio</title>
+  <meta name="description" content="Portfolio of Rahul Dachapally — CS (Data Science) student, ML & Web Dev projects, skills, and contact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121933;
+      --soft: #1a2347;
+      --text: #e6e8f2;
+      --muted: #b9c0d9;
+      --brand: #7c83ff;
+      --brand-2: #31d0aa;
+      --accent: #ffd166;
+      --ring: rgba(124,131,255,.45);
+      --shadow: 0 10px 30px rgba(12, 18, 40, .6);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 80% -10%, rgba(124,131,255,.10), transparent 60%),
+                  radial-gradient(1000px 600px at -10% 20%, rgba(49,208,170,.10), transparent 60%),
+                  var(--bg);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1100px, 92%); margin: 0 auto; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(180%) blur(12px);
+      background: linear-gradient(180deg, rgba(11,16,32,.85), rgba(11,16,32,.55));
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .brand { font-weight: 800; letter-spacing: .3px; font-size: 1.05rem; }
+    .brand .dot { color: var(--brand-2); }
+    nav ul { list-style: none; display: flex; gap: 18px; padding: 0; margin: 0; }
+    nav a { padding: 8px 12px; border-radius: 10px; color: var(--muted); font-weight: 600; font-size: 0.95rem; }
+    nav a:hover, nav a.active { color: var(--text); background: rgba(124,131,255,.12); }
+    .cta { display: inline-flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 12px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #0b1020; font-weight: 800; box-shadow: var(--shadow); }
+
+    /* Hero */
+    .hero { padding: 90px 0 48px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 28px; align-items: center; }
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 18px; padding: 28px; box-shadow: var(--shadow);
+    }
+    .kicker { color: var(--brand-2); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: .8rem; }
+    h1 { margin: 8px 0 14px; font-size: clamp(2rem, 4.2vw, 3rem); line-height: 1.15; }
+    .lead { color: var(--muted); font-size: 1.05rem; }
+    .actions { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
+    .btn { padding: 10px 14px; border-radius: 12px; font-weight: 700; border: 1px solid rgba(255,255,255,.08); background: var(--soft); color: var(--text); }
+    .btn:hover { border-color: var(--brand); box-shadow: 0 0 0 4px var(--ring); }
+    .pill { display: inline-flex; gap: 8px; align-items: center; background: rgba(124,131,255,.12); color: var(--text); padding: 8px 12px; border-radius: 999px; font-weight: 600; font-size: .9rem; }
+    .hero-aside { display: grid; gap: 14px; }
+    .stat { background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.06); border-radius: 16px; padding: 16px; }
+    .stat h3 { margin: 0; font-size: 1.1rem; }
+    .stat p { margin: 6px 0 0; color: var(--muted); }
+
+    /* Sections */
+    section { padding: 54px 0; }
+    .section-title { font-size: clamp(1.4rem, 2.5vw, 1.8rem); margin: 0 0 18px; }
+    .grid { display: grid; gap: 16px; }
+
+    /* Projects */
+    .projects { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 16px; padding: 18px; position: relative; overflow: hidden; transition: transform .2s ease, border-color .2s ease;
+    }
+    .card:hover { transform: translateY(-4px); border-color: rgba(124,131,255,.35); }
+    .card h3 { margin: 6px 0 6px; font-size: 1.15rem; }
+    .card p { color: var(--muted); margin: 0 0 10px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.1); padding: 6px 10px; border-radius: 999px; font-size: .85rem; color: var(--muted); }
+    .card .link { position: absolute; right: 12px; top: 12px; font-weight: 800; font-size: .9rem; color: var(--accent); }
+
+    /* Skills */
+    .skills { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+    .skill { display: grid; gap: 8px; background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.06); padding: 14px; border-radius: 14px; }
+    .skill h4 { margin: 0; font-size: 1rem; }
+    .skill .items { color: var(--muted); font-size: .95rem; }
+
+    /* Timeline */
+    .timeline { position: relative; margin-top: 18px; }
+    .timeline:before { content: ""; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,.12); }
+    .t-item { position: relative; padding-left: 34px; margin: 14px 0; }
+    .t-item:before { content: ""; position: absolute; left: 4px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: 0 0 0 4px rgba(124,131,255,.15); }
+    .t-item h4 { margin: 0; }
+    .t-item .meta { color: var(--muted); font-size: .95rem; }
+
+    /* Footer */
+    footer { padding: 40px 0 60px; color: var(--muted); text-align: center; }
+
+    /* Responsive */
+    @media (max-width: 880px) {
+      .hero { grid-template-columns: 1fr; padding-top: 68px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">Rahul <span class="dot">D.</span></div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#certs">Certifications</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a class="cta" href="mailto:rahulvarma9032@gmail.com" title="Email Rahul">Let’s talk</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container" id="home">
+      <div class="hero-card">
+        <div class="kicker">Computer Science (Data Science)</div>
+        <h1>Hi, I’m Rahul Dachapally.
+          <br/>I build ML models and web apps.</h1>
+        <p class="lead">B.Tech student at Geethanjali College of Engineering and Technology (2022–2026, CGPA 8). I enjoy solving data problems, shipping useful web tools, and learning modern AI/ML.</p>
+        <div class="actions">
+          <a class="btn" href="#projects">See Projects</a>
+          <a class="btn" href="https://www.linkedin.com/in/rahul-dachapally-47a497276/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <div class="actions" style="margin-top:12px">
+          <span class="pill">Languages: C • Python • Java • JavaScript</span>
+          <span class="pill">Web: React • Node.js • Express • HTML • CSS</span>
+          <span class="pill">DB: MySQL • PostgreSQL</span>
+        </div>
+      </div>
+      <aside class="hero-aside">
+        <div class="stat">
+          <h3>Areas of Interest</h3>
+          <p>Machine Learning • Data Engineering • Full‑stack Web</p>
+        </div>
+        <div class="stat">
+          <h3>What I’m practicing</h3>
+          <p>Data Structures & Algorithms • OOP • DBMS • OS</p>
+        </div>
+        <div class="stat">
+          <h3>Open to</h3>
+          <p>Internships • Freelance projects • Collabs</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="container" id="projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="grid projects">
+        <article class="card" aria-labelledby="p1-title">
+          <a class="link" href="#" title="Project link (add when hosted)">↗</a>
+          <h3 id="p1-title">Parkinson’s Disease Detection</h3>
+          <p>Built a machine learning model to detect Parkinson’s Disease using vocal & biomedical features from the UCI dataset. Implemented preprocessing, feature selection, and model evaluation with Python.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">pandas</span>
+            <span class="tag">scikit‑learn</span>
+            <span class="tag">ML</span>
+            <span class="tag">UCI Dataset</span>
+          </div>
+        </article>
+
+        <article class="card" aria-labelledby="p2-title">
+          <a class="link" href="#" title="Project link (add when hosted)">↗</a>
+          <h3 id="p2-title">Amazon Price Tracker</h3>
+          <p>User‑friendly Streamlit web app to monitor Amazon product prices and notify users when the price drops below a target value.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Streamlit</span>
+            <span class="tag">Web App</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="container" id="skills">
+      <h2 class="section-title">Skills</h2>
+      <div class="grid skills">
+        <div class="skill">
+          <h4>Languages</h4>
+          <div class="items">C, Python, Java, JavaScript</div>
+        </div>
+        <div class="skill">
+          <h4>Frontend</h4>
+          <div class="items">HTML, CSS, JavaScript, React</div>
+        </div>
+        <div class="skill">
+          <h4>Backend</h4>
+          <div class="items">Node.js, Express</div>
+        </div>
+        <div class="skill">
+          <h4>Databases</h4>
+          <div class="items">MySQL, PostgreSQL</div>
+        </div>
+        <div class="skill">
+          <h4>Problem Solving</h4>
+          <div class="items">Data Structures & Algorithms</div>
+        </div>
+        <div class="skill">
+          <h4>Related Coursework</h4>
+          <div class="items">OOP, DBMS, OS, ML</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="education">
+      <h2 class="section-title">Education</h2>
+      <div class="timeline" aria-label="Education timeline">
+        <div class="t-item">
+          <h4>Geethanjali College of Engineering and Technology</h4>
+          <div class="meta">B.Tech — Computer Science (Data Science) • 2022 – 2026 • CGPA: 8</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="certs">
+      <h2 class="section-title">Certifications</h2>
+      <div class="timeline" aria-label="Certifications timeline">
+        <div class="t-item">
+          <h4>DSA SmartCoder</h4>
+          <div class="meta">SmartInterviews</div>
+        </div>
+        <div class="t-item">
+          <h4>Power BI</h4>
+          <div class="meta">Geethanjali College of Engineering and Technology</div>
+        </div>
+        <div class="t-item">
+          <h4>Java Fundamentals</h4>
+          <div class="meta">Oracle</div>
+        </div>
+        <div class="t-item">
+          <h4>Python Essentials</h4>
+          <div class="meta">Oracle</div>
+        </div>
+        <div class="t-item">
+          <h4>Google AIML Summer Intern</h4>
+          <div class="meta">Eduskills — TensorFlow, neural networks, image classification</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+        <div class="card">
+          <h3>Email</h3>
+          <p><a href="mailto:rahulvarma9032@gmail.com">rahulvarma9032@gmail.com</a></p>
+        </div>
+        <div class="card">
+          <h3>Phone</h3>
+          <p><a href="tel:+916304776484">+91 63047 76484</a></p>
+        </div>
+        <div class="card">
+          <h3>Location</h3>
+          <p>Hyderabad — 501301</p>
+        </div>
+        <div class="card">
+          <h3>LinkedIn</h3>
+          <p><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/rahul-dachapally-47a497276/">linkedin.com/in/rahul-dachapally-47a497276</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> Rahul Dachapally. Built with vanilla HTML/CSS/JS.</div>
+  </footer>
+
+  <script>
+    // Active link highlighting on scroll
+    const links = [...document.querySelectorAll('header nav a')];
+    const sections = links.map(a => document.querySelector(a.getAttribute('href')));
+
+    const onScroll = () => {
+      const y = window.scrollY + 120; // offset for sticky header
+      let activeIndex = 0;
+      sections.forEach((sec, i) => {
+        if (sec && sec.offsetTop <= y) activeIndex = i;
+      });
+      links.forEach((a, i) => a.classList.toggle('active', i === activeIndex));
+    };
+    document.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
